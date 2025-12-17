@@ -13,7 +13,14 @@
     --text:#e9ecf5;
     --line:#243055;
     --good:#22c55e;
+
+    /* Novos tons executivos */
+    --ink:#0b1b3a;         /* azul escuro p/ texto em cards claros */
+    --whiteCard:#ffffff;   /* fundo KPI */
+    --regionCard:#0f2a53;  /* destaque regiões */
+    --regionLine:rgba(255,255,255,.10);
   }
+
   *{box-sizing:border-box}
   body{
     margin:0;
@@ -35,8 +42,28 @@
     box-shadow:0 10px 24px rgba(0,0,0,.25)
   }
 
+  /* KPI destacado (fundo branco) */
+  .card.kpi{
+    background:var(--whiteCard);
+    border:1px solid rgba(255,255,255,.35);
+    box-shadow:0 14px 30px rgba(0,0,0,.28);
+  }
+  .card.kpi .kpi-title{color:rgba(11,27,58,.65)}
+  .card.kpi .kpi-value{color:var(--ink)}
+
+  /* Card destaque por região */
+  .card.region{
+    background:linear-gradient(180deg, rgba(21,60,120,.45), rgba(15,42,83,.92));
+    border:1px solid var(--regionLine);
+  }
+  .card.region .section-title{color:#eaf0ff}
+  .card.region table th,
+  .card.region table td{
+    border-bottom:1px solid var(--regionLine);
+  }
+
   .kpi-title{color:var(--muted);font-size:12px}
-  .kpi-value{font-size:22px;margin-top:8px;font-weight:700}
+  .kpi-value{font-size:22px;margin-top:8px;font-weight:800; letter-spacing:.2px}
 
   .row{
     display:grid;
@@ -75,18 +102,29 @@
   .toolbar{
     display:flex;
     gap:10px;
-    margin-bottom:8px
+    margin-bottom:8px;
+    flex-wrap:wrap;
+    align-items:center
   }
 
-  .toolbar input{
+  .toolbar input,
+  .toolbar select,
+  .toolbar button{
     background:#0f1730;
     border:1px solid var(--line);
     color:var(--text);
     padding:8px 10px;
     border-radius:8px;
     font-size:12px;
-    width:200px
   }
+
+  .toolbar input{width:200px}
+  .toolbar select{min-width:220px}
+  .toolbar button{
+    cursor:pointer;
+    user-select:none;
+  }
+  .toolbar button:hover{filter:brightness(1.08)}
 
   .mini{font-size:11px;color:var(--muted);line-height:1.35}
 
@@ -104,9 +142,7 @@
     text-decoration:none;
     word-break:break-all
   }
-  .footer-link a:hover{
-    text-decoration:underline
-  }
+  .footer-link a:hover{ text-decoration:underline }
 </style>
 </head>
 
@@ -128,7 +164,7 @@
   </div>
 
   <!-- REGIÕES -->
-  <div class="card">
+  <div class="card region">
     <div class="section-title">Janeiro – entregas por região</div>
     <div style="overflow:auto">
       <table id="regioesTable">
@@ -156,6 +192,19 @@
 
   <div class="toolbar">
     <input id="ufSearch" placeholder="Pesquisar UF (ex: SP)" />
+
+    <!-- NOVO: ordenação -->
+    <select id="ufSort">
+      <option value="ValorFaturado">Ordenar por: Valor faturado</option>
+      <option value="ValorEntregue">Ordenar por: Valor entregue</option>
+      <option value="Pendente">Ordenar por: Pendente</option>
+      <option value="PrevDez">Ordenar por: Previsto Dez</option>
+      <option value="PrevJan">Ordenar por: Previsto Jan</option>
+    </select>
+
+    <button id="ufDir" type="button" aria-label="Alternar direção">
+      Descendente
+    </button>
   </div>
 
   <div style="overflow:auto;max-height:520px">
@@ -193,6 +242,23 @@ const brl=v=>Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL
 const pct=(a,b)=>b?((a/b)*100).toFixed(2).replace('.',',')+'%':'0,00%';
 
 let ufData=[];
+let ufView=[];
+let sortKey='ValorFaturado';
+let sortDir='desc';
+
+function applyUFView(){
+  const term=(document.getElementById('ufSearch').value||'').toUpperCase().trim();
+  const filtered = term ? ufData.filter(u => String(u.UF||'').toUpperCase().includes(term)) : [...ufData];
+
+  filtered.sort((x,y)=>{
+    const ax=Number(x?.[sortKey]||0);
+    const ay=Number(y?.[sortKey]||0);
+    return sortDir==='asc' ? (ax - ay) : (ay - ax);
+  });
+
+  ufView=filtered;
+  renderUFTable(ufView);
+}
 
 async function load(){
   const r=await fetch('./data.json?v='+Date.now(),{cache:'no-store'});
@@ -206,7 +272,7 @@ async function load(){
     ['Entrega prevista – Dez',d.kpis.entrega_prevista_dez],
     ['Entrega prevista – Jan',d.kpis.entrega_prevista_jan]
   ].map(k=>`
-    <div class="card">
+    <div class="card kpi">
       <div class="kpi-title">${k[0]}</div>
       <div class="kpi-value">${brl(k[1])}</div>
     </div>
@@ -245,8 +311,8 @@ async function load(){
       `;
     }).join('');
 
-  ufData=d.uf;
-  renderUFTable(ufData);
+  ufData=d.uf || [];
+  applyUFView();
 }
 
 function renderUFTable(data){
@@ -266,11 +332,21 @@ function renderUFTable(data){
 
 document.addEventListener('input',e=>{
   if(e.target.id==='ufSearch'){
-    const term=e.target.value.toUpperCase();
-    renderUFTable(
-      ufData.filter(u=>u.UF.includes(term))
-    );
+    applyUFView();
   }
+});
+
+document.addEventListener('change',e=>{
+  if(e.target.id==='ufSort'){
+    sortKey=e.target.value;
+    applyUFView();
+  }
+});
+
+document.getElementById('ufDir').addEventListener('click',()=>{
+  sortDir = (sortDir==='desc') ? 'asc' : 'desc';
+  document.getElementById('ufDir').textContent = sortDir==='desc' ? 'Descendente' : 'Ascendente';
+  applyUFView();
 });
 
 load();

@@ -191,4 +191,67 @@ async function load(){
     const total=a.entregue+a.nao_entregue;
     const w= total ? (a.entregue/total)*100 : 0;
     return `
-      <div style="margin-bottom
+      <div style="margin-bottom:10px">
+        <b>${a.ano}</b>
+        <div class="bar"><span style="width:${w}%"></span></div>
+        <div class="mini">
+          Entregue ${brl(a.entregue)} • Não entregue ${brl(a.nao_entregue)} • Total ${brl(total)}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  /* Regiões */
+  document.querySelector('#regioesTable tbody').innerHTML=
+    d.regioes.map(r=>{
+      const p=r.valor_faturado ? r.valor_entregue/r.valor_faturado : 0;
+      return `
+        <tr>
+          <td><b>${r.regiao}</b></td>
+          <td>${brl(r.valor_faturado)}</td>
+          <td>${brl(r.valor_entregue)}</td>
+          <td>
+            ${pct(r.valor_entregue,r.valor_faturado)}
+            <div class="bar"><span style="width:${p*100}%"></span></div>
+          </td>
+          <td>${brl(r.valor_pendente)}</td>
+          <td>${brl(r.previsto_dez)}</td>
+          <td>${brl(r.previsto_jan)}</td>
+        </tr>
+      `;
+    }).join('');
+
+  /* UF */
+  ufData = d.uf;
+  renderUFTable(ufData);
+}
+
+function renderUFTable(data){
+  document.querySelector('#ufTable tbody').innerHTML=
+    data.map(u=>`
+      <tr>
+        <td><b>${u.UF}</b></td>
+        <td>${brl(u.ValorFaturado)}</td>
+        <td>${brl(u.ValorEntregue)}</td>
+        <td>${pct(u.ValorEntregue,u.ValorFaturado)}</td>
+        <td>${brl(u.Pendente)}</td>
+        <td>${brl(u.PrevDez)}</td>
+        <td>${brl(u.PrevJan)}</td>
+      </tr>
+    `).join('');
+}
+
+/* 🔍 FILTRO POR UF */
+document.addEventListener('input',e=>{
+  if(e.target.id==='ufSearch'){
+    const term=e.target.value.toUpperCase();
+    renderUFTable(
+      ufData.filter(u=>u.UF.includes(term))
+    );
+  }
+});
+
+load();
+</script>
+</body>
+</html>

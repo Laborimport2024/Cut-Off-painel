@@ -71,12 +71,18 @@
       <div class="mini" style="margin-top:10px">Obs.: valores em R$.</div>
     </div>
 
-    <div class="card">
-      <div class="section-title">Janeiro – leitura executiva</div>
-      <div class="note">
-        O indicador “Entrega prevista – Jan” representa a parcela já faturada que, por restrição operacional/janela/fluxo, está projetada para entrega após 31/12.
-        A tabela abaixo detalha por UF e permite priorização (maior impacto financeiro e maior volume pendente).
-      </div>
+<div class="card">
+  <div class="section-title">Janeiro – entregas por região</div>
+  <div class="note">
+    Visão executiva por região com valor faturado, valor entregue e percentual de entrega realizada (Entregue ÷ Faturado).
+  </div>
+
+  <div id="regioesJan" style="margin-top:12px"></div>
+
+  <div class="mini" style="margin-top:10px">
+    Regra: % Entregue = Valor entregue ÷ Valor faturado.
+  </div>
+</div>
       <div style="margin-top:12px">
         <div class="pill">Sugestão de uso</div>
         <div class="note" style="margin-top:8px">
@@ -187,13 +193,12 @@ async function load(){
 
     // KPIs
     const k = data.kpis;
-    const janShare = k.valor_pendente_total ? (k.valor_previsto_jan / k.valor_pendente_total) : 0;
-    const cards = [
-      {t:'Valor faturado (Dez)', v: brl(k.valor_faturado_dez), f:'Base de faturamento no período'},
-      {t:'Valor entregue (Dez)', v: brl(k.valor_entregue_dez), f:'Executado até a última atualização'},
-      {t:'Entrega prevista – Jan', v: brl(k.valor_previsto_jan), f:'Projeção pós 31/12 (exceção)'},
-      {t:'Jan / Pendente', v: pct(janShare), f:'Participação do previsto Jan no pendente total'},
-    ];
+  const cards = [
+  {t:'Valor faturado (Dez)', v: brl(k.valor_faturado_dez), f:'Base de faturamento no período'},
+  {t:'Valor entregue (Dez)', v: brl(k.valor_entregue_dez), f:'Executado até a última atualização'},
+  {t:'Entrega prevista – Dez', v: brl(k.valor_previsto_dez), f:'Parcela faturada projetada para entrega ainda em dezembro'},
+  {t:'Entrega prevista – Jan', v: brl(k.valor_previsto_jan), f:'Parcela faturada projetada para entrega após 31/12 (exceção)'}
+];
     const grid=document.getElementById('kpiGrid');
     grid.innerHTML = cards.map(c=>`
       <div class="card">

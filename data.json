@@ -1,5 +1,5 @@
 {
-  "updated_at": "17/12/2025 14:30",
+  "updated_at": "17/12/2025 15:20",
 
   "kpis": {
     "valor_faturado_dez": 8442427.58,
@@ -15,15 +15,40 @@
   ],
 
   "regioes": [
-    { "regiao": "Sudeste", "valor_faturado": 0, "valor_entregue": 0, "valor_pendente": 0, "previsto_dez": 0, "previsto_jan": 0 },
-    { "regiao": "Nordeste", "valor_faturado": 0, "valor_entregue": 0, "valor_pendente": 0, "previsto_dez": 0, "previsto_jan": 0 },
-    { "regiao": "Sul", "valor_faturado": 0, "valor_entregue": 0, "valor_pendente": 0, "previsto_dez": 0, "previsto_jan": 0 },
-    { "regiao": "Centro-Oeste", "valor_faturado": 0, "valor_entregue": 0, "valor_pendente": 0, "previsto_dez": 0, "previsto_jan": 0 },
-    { "regiao": "Norte", "valor_faturado": 0, "valor_entregue": 0, "valor_pendente": 0, "previsto_dez": 0, "previsto_jan": 0 }
+    { "regiao":"Sudeste","valor_faturado":0,"valor_entregue":0,"valor_pendente":0,"previsto_dez":0,"previsto_jan":0 },
+    { "regiao":"Nordeste","valor_faturado":0,"valor_entregue":0,"valor_pendente":0,"previsto_dez":0,"previsto_jan":0 },
+    { "regiao":"Sul","valor_faturado":0,"valor_entregue":0,"valor_pendente":0,"previsto_dez":0,"previsto_jan":0 },
+    { "regiao":"Centro-Oeste","valor_faturado":0,"valor_entregue":0,"valor_pendente":0,"previsto_dez":0,"previsto_jan":0 },
+    { "regiao":"Norte","valor_faturado":0,"valor_entregue":0,"valor_pendente":0,"previsto_dez":0,"previsto_jan":0 }
   ],
 
   "uf": [
-    { "UF": "SP", "ValorFaturado": 2629604.33, "ValorEntregue": 1900000.00, "Pendente": 729604.33, "PrevDez": 300000.00, "PrevJan": 429604.33 },
-    { "UF": "RJ", "ValorFaturado": 500000.00, "ValorEntregue": 350000.00, "Pendente": 150000.00, "PrevDez": 70000.00, "PrevJan": 80000.00 }
+    { "UF":"AC","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"AL","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"AP","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"AM","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"BA","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"CE","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"DF","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"ES","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"GO","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"MA","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"MT","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"MS","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"MG","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"PA","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"PB","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"PR","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"PE","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"PI","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"RJ","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"RN","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"RS","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"RO","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"RR","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"SC","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"SP","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"SE","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 },
+    { "UF":"TO","ValorFaturado":0,"ValorEntregue":0,"Pendente":0,"PrevDez":0,"PrevJan":0 }
   ]
 }

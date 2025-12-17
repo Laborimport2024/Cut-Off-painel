@@ -5,337 +5,96 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Cut-Off – Painel Executivo</title>
 <style>
-  :root {
-    --bg:#0b1020;
-    --card:#121a33;
-    --muted:#9aa4c0;
-    --text:#e9ecf5;
-    --line:#243055;
-    --good:#22c55e;
-    --warn:#f59e0b;
-    --bad:#ef4444;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),#070a14);color:var(--text)}
-  .wrap{max-width:1200px;margin:0 auto;padding:24px}
-  .top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
-  h1{margin:0;font-size:22px;letter-spacing:.2px}
-  .sub{color:var(--muted);font-size:12px;margin-top:6px}
-  .actions{display:flex;gap:10px;flex-wrap:wrap}
-  button{background:transparent;border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:10px;cursor:pointer}
-  button:hover{border-color:#3a4a80}
-  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
-  .card{background:rgba(18,26,51,.92);border:1px solid rgba(36,48,85,.8);border-radius:14px;padding:14px;box-shadow:0 10px 24px rgba(0,0,0,.25)}
-  .kpi-title{color:var(--muted);font-size:12px}
-  .kpi-value{font-size:22px;margin-top:8px;font-weight:700}
-  .kpi-foot{margin-top:6px;color:var(--muted);font-size:12px}
-  .row{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin-top:12px}
-  @media (max-width: 980px){ .grid{grid-template-columns:repeat(2,1fr)} .row{grid-template-columns:1fr} }
-  .section-title{margin:18px 0 10px 0;font-size:14px;color:#d8ddf0}
-  .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
-  .toolbar input, .toolbar select{background:#0f1730;border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:10px;min-width:240px}
-  table{width:100%;border-collapse:collapse}
-  th,td{padding:10px 10px;border-bottom:1px solid rgba(36,48,85,.8);font-size:12px;vertical-align:top}
-  th{color:#cfd6f3;text-align:left;position:sticky;top:0;background:#0f1730;z-index:1;cursor:pointer}
-  td{color:#e8ebf7}
-  .pill{display:inline-block;padding:4px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:11px}
-  .bar{height:10px;border-radius:999px;background:#0f1730;border:1px solid rgba(36,48,85,.8);overflow:hidden}
-  .bar > span{display:block;height:100%;background:linear-gradient(90deg,#60a5fa,#22c55e);width:0%}
-  .note{color:var(--muted);font-size:12px;line-height:1.4}
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  @media (max-width: 980px){ .two{grid-template-columns:1fr} }
-  .mini{font-size:11px;color:var(--muted)}
+:root{
+  --bg:#0b1020;--card:#121a33;--muted:#9aa4c0;--text:#e9ecf5;--line:#243055;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),#070a14);color:var(--text)}
+.wrap{max-width:1200px;margin:0 auto;padding:24px}
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+h1{margin:0;font-size:22px}
+.sub{color:var(--muted);font-size:12px;margin-top:6px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.card{background:rgba(18,26,51,.92);border:1px solid rgba(36,48,85,.8);border-radius:14px;padding:14px}
+.kpi-title{color:var(--muted);font-size:12px}
+.kpi-value{font-size:22px;margin-top:8px;font-weight:700}
+.kpi-foot{margin-top:6px;color:var(--muted);font-size:12px}
+.row{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin-top:12px}
+@media (max-width: 980px){ .grid{grid-template-columns:repeat(2,1fr)} .row{grid-template-columns:1fr} }
+.section-title{margin:0 0 8px 0;font-size:14px}
+.note{color:var(--muted);font-size:12px}
+.pill{display:inline-block;padding:4px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:11px}
+.mini{font-size:11px;color:var(--muted)}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div id="errorBox" style="display:none;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:#fecaca;padding:10px 12px;border-radius:12px;margin-bottom:12px;font-size:12px;line-height:1.4"></div>
-  <div class="top">
-    <div>
-      <h1>Cut-Off – Painel Executivo</h1>
-      <div class="sub">Foco: entregas previstas para <b>Janeiro</b> (exceções pós 31/12) • Última atualização: <span id="updatedAt">—</span></div>
-    </div>
-    <div class="actions">
-      <button onclick="window.print()">Exportar / Imprimir (PDF)</button>
-      <button onclick="toggleDense()">Alternar densidade</button>
-    </div>
-  </div>
 
-  <div class="grid" id="kpiGrid"></div>
-
-  <div class="row">
-    <div class="card">
-      <div class="section-title">Resumo histórico – Dezembro (anos anteriores)</div>
-      <div class="note">Comparativo do resultado de dezembro (entregue vs. não entregue). Útil para contextualizar o desempenho e o risco residual de fim de ano.</div>
-      <div id="yearChart" style="margin-top:12px"></div>
-      <div class="mini" style="margin-top:10px">Obs.: valores em R$.</div>
-    </div>
-
-<div class="card">
-  <div class="section-title">Janeiro – entregas por região</div>
-  <div class="note">
-    Visão executiva por região com valor faturado, valor entregue e percentual de entrega realizada (Entregue ÷ Faturado).
-  </div>
-
-  <div id="regioesJan" style="margin-top:12px"></div>
-
-  <div class="mini" style="margin-top:10px">
-    Regra: % Entregue = Valor entregue ÷ Valor faturado.
+<div class="top">
+  <div>
+    <h1>Cut-Off – Painel Executivo</h1>
+    <div class="sub">Última atualização: <span id="updatedAt">—</span></div>
   </div>
 </div>
-      <div style="margin-top:12px">
-        <div class="pill">Sugestão de uso</div>
-        <div class="note" style="margin-top:8px">
-          Priorizar ação em UFs com: (1) maior <b>Previsto Jan</b>, (2) maior <b>Pendente total</b>, (3) menor <b>% R$ Entregue</b>.
-        </div>
-      </div>
-    </div>
+
+<div class="grid" id="kpiGrid"></div>
+
+<div class="row">
+  <div class="card">
+    <div class="section-title">Resumo histórico – Dezembro</div>
+    <div id="yearChart" class="mini">—</div>
   </div>
 
-  <div class="two" style="margin-top:12px">
-    <div class="card">
-      <div class="section-title">Top UFs – Previsto Janeiro</div>
-      <div id="topJan" style="margin-top:10px"></div>
-      <div class="mini" style="margin-top:10px">Ranking por “R$ Previsto Entrega Janeiro”.</div>
-    </div>
-
-    <div class="card">
-      <div class="section-title">Top UFs – Pendente total</div>
-      <div id="topPend" style="margin-top:10px"></div>
-      <div class="mini" style="margin-top:10px">Ranking por “R$ Pendente de Entrega”.</div>
-    </div>
+  <div class="card">
+    <div class="section-title">Janeiro – entregas por região</div>
+    <div id="regioesJan" style="margin-top:10px"></div>
+    <div class="mini" style="margin-top:8px">% Entregue = Entregue ÷ Faturado</div>
   </div>
-
-  <div class="card" style="margin-top:12px">
-    <div class="section-title">Detalhamento por UF</div>
-    <div class="toolbar">
-      <input id="q" placeholder="Buscar UF (ex.: SP)"/>
-      <select id="sort">
-        <option value="PrevJan_desc">Ordenar: Previsto Jan (desc)</option>
-        <option value="Pendente_desc">Ordenar: Pendente total (desc)</option>
-        <option value="PercREntregue_asc">Ordenar: % R$ Entregue (asc)</option>
-        <option value="ValorFaturado_desc">Ordenar: Valor faturado (desc)</option>
-      </select>
-      <span class="pill" id="countPill">—</span>
-    </div>
-    <div style="max-height:520px;overflow:auto;border-radius:12px;border:1px solid rgba(36,48,85,.8)">
-      <table id="ufTable">
-        <thead>
-          <tr>
-            <th data-k="UF">UF</th>
-            <th data-k="TotalNotas">Notas</th>
-            <th data-k="PercEntregas">% Entregas</th>
-            <th data-k="ValorFaturado">Valor faturado</th>
-            <th data-k="ValorEntregue">Valor entregue</th>
-            <th data-k="PercREntregue">% R$ entregue</th>
-            <th data-k="PrevDez">Previsto Dez</th>
-            <th data-k="PrevJan">Previsto Jan</th>
-            <th data-k="Pendente">Pendente total</th>
-            <th>Jan / Pendente</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-    <div class="mini" style="margin-top:10px">
-      Observação: “Jan / Pendente” indica quanto do pendente total já está projetado para janeiro (maior = mais risco de não conversão em dezembro).
-    </div>
-  </div>
-
 </div>
 
 <script>
-let dense=false;
-function toggleDense(){
-  dense=!dense;
-  document.body.style.fontSize = dense ? '13px' : '';
-}
-
 function brl(v){
-  if(v===null || v===undefined || v==='') v=0;
-  // Aceita número ou string (ex.: "1.234,56" ou "R$ 1.234,56")
-  if(typeof v === 'string'){
-    const cleaned = v.replace(/[^0-9,.-]/g,'').replace(/\./g,'').replace(',', '.');
-    const parsed = Number(cleaned);
-    v = Number.isFinite(parsed) ? parsed : 0;
-  }
-  return Number(v).toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
+  return Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 }
-function pct(v){
-  if(v===null || v===undefined) return '—';
-  return (v*100).toFixed(2).replace('.',',') + '%';
+function pct(a,b){
+  if(!b) return '0,00%';
+  return ((a/b)*100).toFixed(2).replace('.',',')+'%';
 }
-function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 
 async function load(){
-  // Cache-buster + no-store para evitar cache de navegador/CDN
-  const url = `./data.json?v=${Date.now()}`;
+  const r = await fetch('./data.json?v='+Date.now(),{cache:'no-store'});
+  const data = await r.json();
 
-  // Helper de UX: mostra erro no topo (se existir)
-  const showError = (msg) => {
-    const box = document.getElementById('errorBox');
-    if(!box) { console.error(msg); return; }
-    box.style.display = 'block';
-    box.textContent = msg;
-  };
+  document.getElementById('updatedAt').textContent = data.updated_at;
 
-  try{
-    const r = await fetch(url, { cache: "no-store" });
-    if(!r.ok) throw new Error(`Falha ao carregar data.json (HTTP ${r.status})`);
-    const data = await r.json();
-
-    // Validação mínima do schema esperado
-    if(!data || !data.kpis || !Array.isArray(data.uf) || !Array.isArray(data.years_december)){
-      throw new Error('data.json carregou, mas a estrutura (schema) não está no formato esperado.');
-    }
-
-    document.getElementById('updatedAt').textContent = data.updated_at || '—';
-
-    // KPIs
-    const k = data.kpis;
+  const k = data.kpis;
   const cards = [
-  {t:'Valor faturado (Dez)', v: brl(k.valor_faturado_dez), f:'Base de faturamento no período'},
-  {t:'Valor entregue (Dez)', v: brl(k.valor_entregue_dez), f:'Executado até a última atualização'},
-  {t:'Entrega prevista – Dez', v: brl(k.valor_previsto_dez), f:'Parcela faturada projetada para entrega ainda em dezembro'},
-  {t:'Entrega prevista – Jan', v: brl(k.valor_previsto_jan), f:'Parcela faturada projetada para entrega após 31/12 (exceção)'}
-];
-    const grid=document.getElementById('kpiGrid');
-    grid.innerHTML = cards.map(c=>`
-      <div class="card">
-        <div class="kpi-title">${c.t}</div>
-        <div class="kpi-value">${c.v}</div>
-        <div class="kpi-foot">${c.f}</div>
+    {t:'Valor faturado (Dez)', v: brl(k.valor_faturado_dez)},
+    {t:'Valor entregue (Dez)', v: brl(k.valor_entregue_dez)},
+    {t:'Entrega prevista – Dez', v: brl(k.valor_previsto_dez)},
+    {t:'Entrega prevista – Jan', v: brl(k.valor_previsto_jan)}
+  ];
+
+  document.getElementById('kpiGrid').innerHTML = cards.map(c=>`
+    <div class="card">
+      <div class="kpi-title">${c.t}</div>
+      <div class="kpi-value">${c.v}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('regioesJan').innerHTML =
+    data.regioes_janeiro.map(r=>`
+      <div style="margin-bottom:8px">
+        <span class="pill">${r.regiao}</span>
+        <div class="mini">Faturado: <b>${brl(r.valor_faturado)}</b></div>
+        <div class="mini">Entregue: <b>${brl(r.valor_entregue)}</b></div>
+        <div><b>${pct(r.valor_entregue,r.valor_faturado)}</b></div>
       </div>
     `).join('');
-
-    // Year chart
-    renderYearChart(data.years_december);
-
-    // Top lists
-    renderTop('topJan', data.uf, 'PrevJan', 8);
-    renderTop('topPend', data.uf, 'Pendente', 8);
-
-    // Table
-    setupTable(data.uf);
-
-  } catch(err){
-    console.error(err);
-    showError(`Não foi possível carregar os dados do painel. Motivo: ${err.message}`);
-    // Mantém a página navegável, mas sem dados.
-    document.getElementById('updatedAt').textContent = '—';
-    const grid=document.getElementById('kpiGrid');
-    if(grid) grid.innerHTML = `
-      <div class="card" style="grid-column:1/-1">
-        <div class="kpi-title">Dados indisponíveis</div>
-        <div class="kpi-value">—</div>
-        <div class="kpi-foot">Verifique se o arquivo <b>data.json</b> está publicado no mesmo diretório do HTML e se está válido (JSON).</div>
-      </div>
-    `;
-    const topJan=document.getElementById('topJan'); if(topJan) topJan.innerHTML = '<div class="mini">—</div>';
-    const topPend=document.getElementById('topPend'); if(topPend) topPend.innerHTML = '<div class="mini">—</div>';
-    const yearChart=document.getElementById('yearChart'); if(yearChart) yearChart.innerHTML = '<div class="mini">—</div>';
-    const tbody = document.querySelector('#ufTable tbody'); if(tbody) tbody.innerHTML = '';
-    const countPill=document.getElementById('countPill'); if(countPill) countPill.textContent = '0 UFs';
-  }
-}
-
-function renderYearChart(rows){
-  // simple stacked bars using divs (email-safe style)
-  const max = Math.max(...rows.map(r => r.entregue + r.nao_entregue));
-  const html = rows.sort((a,b)=>a.ano-b.ano).map(r=>{
-    const total=r.entregue+r.nao_entregue;
-    const ent= (r.entregue/max)*100;
-    const nao= (r.nao_entregue/max)*100;
-    return `
-      <div style="margin:10px 0">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
-          <div style="min-width:62px;font-weight:700">${r.ano}</div>
-          <div style="flex:1">
-            <div class="bar" aria-label="stack">
-              <span style="width:${clamp(ent,0,100)}%"></span>
-            </div>
-            <div class="mini" style="margin-top:6px">Entregue: <b>${brl(r.entregue)}</b> • Não entregue: <b>${brl(r.nao_entregue)}</b> • Total: <b>${brl(total)}</b></div>
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
-  document.getElementById('yearChart').innerHTML = html;
-}
-
-function renderTop(elId, rows, key, n){
-  const el=document.getElementById(elId);
-  const sorted = [...rows].filter(r=>r[key]>0).sort((a,b)=>b[key]-a[key]).slice(0,n);
-  const max = sorted.length ? sorted[0][key] : 1;
-  el.innerHTML = sorted.map(r=>{
-    const w = max ? (r[key]/max)*100 : 0;
-    return `
-      <div style="display:grid;grid-template-columns:50px 1fr 140px;gap:10px;align-items:center;margin:10px 0">
-        <div class="pill" style="text-align:center;color:#cfd6f3">${r.UF}</div>
-        <div class="bar"><span style="width:${clamp(w,0,100)}%"></span></div>
-        <div style="text-align:right;font-weight:700">${brl(r[key])}</div>
-      </div>
-    `;
-  }).join('') || '<div class="mini">Sem valores para exibição.</div>';
-}
-
-function setupTable(rows){
-  const tbody = document.querySelector('#ufTable tbody');
-  const q = document.getElementById('q');
-  const sort = document.getElementById('sort');
-  const countPill=document.getElementById('countPill');
-
-  function render(){
-    const term = (q.value||'').trim().toUpperCase();
-    let filtered = rows.filter(r=>!term || r.UF.toUpperCase().includes(term));
-    const [k,dir] = sort.value.split('_');
-    filtered.sort((a,b)=>{
-      const av=a[k], bv=b[k];
-      if(av===bv) return a.UF.localeCompare(b.UF);
-      return dir==='desc' ? (bv-av) : (av-bv);
-    });
-    countPill.textContent = `${filtered.length} UFs`;
-
-    tbody.innerHTML = filtered.map(r=>{
-      const share = r.Pendente ? (r.PrevJan/r.Pendente) : 0;
-      return `
-        <tr>
-          <td><b>${r.UF}</b></td>
-          <td>${r.TotalNotas}</td>
-          <td>${pct(r.PercEntregas)}</td>
-          <td>${brl(r.ValorFaturado)}</td>
-          <td>${brl(r.ValorEntregue)}</td>
-          <td>${pct(r.PercREntregue)}</td>
-          <td>${brl(r.PrevDez)}</td>
-          <td><b>${brl(r.PrevJan)}</b></td>
-          <td>${brl(r.Pendente)}</td>
-          <td>${pct(share)}</td>
-        </tr>
-      `;
-    }).join('');
-  }
-
-  q.addEventListener('input', render);
-  sort.addEventListener('change', render);
-
-  // clickable sorting via header
-  document.querySelectorAll('#ufTable thead th[data-k]').forEach(th=>{
-    th.addEventListener('click', ()=>{
-      const k = th.getAttribute('data-k');
-      // toggle based on current sort
-      const cur = sort.value;
-      const curk = cur.split('_')[0];
-      let dir = 'desc';
-      if(curk===k && cur.endsWith('_desc')) dir='asc';
-      sort.value = `${k}_${dir}`;
-      render();
-    });
-  });
-
-  render();
 }
 
 load();
 </script>
+
 </body>
 </html>

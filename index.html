@@ -176,10 +176,10 @@ async function load(){
     // KPIs (todos vindos do JSON)
     const k = data.kpis;
     const cards = [
-      {t:'Valor faturado (Dez)', v: brl(k.valor_faturado_dez), f:'Fonte: JSON'},
-      {t:'Valor entregue (Dez)', v: brl(k.valor_entregue_dez), f:'Fonte: JSON'},
-      {t:'Entrega prevista – Dez', v: brl(k.entrega_prevista_dez), f:'Fonte: JSON'},
-      {t:'Entrega prevista – Jan', v: brl(k.entrega_prevista_jan), f:'Fonte: JSON'}
+      {t:'Valor faturado (Dez)', v: brl(k.valor_faturado_dez),
+      {t:'Valor entregue (Dez)', v: brl(k.valor_entregue_dez),
+      {t:'Entrega prevista – Dez', v: brl(k.entrega_prevista_dez),
+      {t:'Entrega prevista – Jan', v: brl(k.entrega_prevista_jan),
     ];
     document.getElementById('kpiGrid').innerHTML = cards.map(c=>`
       <div class="card">

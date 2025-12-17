@@ -366,13 +366,6 @@
   ]
 }
 {
-  "updated_at": "17/12/2025 11:20",
-  "cards": {
-    "previsto_dezembro": 1234567.89,
-    "previsto_janeiro": 2345678.90,
-    "jan_valor_faturado": 8442427.58,
-    "jan_valor_entregue": 6173984.12
-  },
   "entregas_por_regiao_janeiro": [
     {
       "regiao": "Sudeste",

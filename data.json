@@ -3,9 +3,9 @@
   "kpis": {
     "valor_faturado_dez": 7766664.27,
     "valor_entregue_dez": 4389005.29,
-    "valor_previsto_jan": 373155.87,
-    "valor_pendente_total": 2948231.18,
-    "pct_r_entregue": 0.5650999999999999
+    "valor_previsto_dez": 2575075.31,
+    "valor_previsto_jan": 373155.31,
+    "valor_pendente_total": 3388266.98
   },
   "years_december": [
     {

@@ -38,7 +38,7 @@
   .kpi-title{color:var(--muted);font-size:12px}
   .kpi-value{font-size:22px;margin-top:8px;font-weight:700}
 
-  /* AJUSTE DE LARGURA DOS CARDS */
+  /* Mais espaço para "Região" */
   .row{
     display:grid;
     grid-template-columns:1fr 1.4fr;
@@ -71,7 +71,7 @@
     height:100%;
     background:linear-gradient(90deg,#60a5fa,var(--good))
   }
-  .mini{font-size:11px;color:var(--muted)}
+  .mini{font-size:11px;color:var(--muted);line-height:1.35}
 </style>
 </head>
 
@@ -88,7 +88,7 @@
 
   <!-- HISTÓRICO -->
   <div class="card">
-    <div class="section-title">Resumo histórico – Dezembro (anos anteriores)</div>
+    <div class="section-title">Resumo histórico – (anos anteriores)</div>
     <div id="yearChart"></div>
   </div>
 
@@ -163,52 +163,16 @@ async function load(){
     </div>
   `).join('');
 
-  /* Histórico */
+  /* Histórico (com resumo por ano restaurado) */
   document.getElementById('yearChart').innerHTML=d.historico_dezembro.map(a=>{
-    const total=a.entregue+a.nao_entregue;
-    const w=(a.entregue/total)*100;
+    const entregue=Number(a.entregue||0);
+    const nao=Number(a.nao_entregue||0);
+    const total=entregue+nao;
+    const w= total ? (entregue/total)*100 : 0;
+
     return `
-      <div style="margin-bottom:8px">
-        <b>${a.ano}</b>
-        <div class="bar"><span style="width:${w}%"></span></div>
-      </div>
-    `;
-  }).join('');
-
-  /* Regiões */
-  document.querySelector('#regioesTable tbody').innerHTML=
-    d.regioes.map(r=>{
-      const p=r.valor_entregue/r.valor_faturado||0;
-      return `
-        <tr>
-          <td><b>${r.regiao}</b></td>
-          <td>${brl(r.valor_faturado)}</td>
-          <td>${brl(r.valor_entregue)}</td>
-          <td>${pct(r.valor_entregue,r.valor_faturado)}
-            <div class="bar"><span style="width:${p*100}%"></span></div>
-          </td>
-          <td>${brl(r.valor_pendente)}</td>
-          <td>${brl(r.previsto_dez)}</td>
-          <td>${brl(r.previsto_jan)}</td>
-        </tr>
-      `;
-    }).join('');
-
-  /* UF */
-  document.querySelector('#ufTable tbody').innerHTML=
-    d.uf.map(u=>`
-      <tr>
-        <td><b>${u.UF}</b></td>
-        <td>${brl(u.ValorFaturado)}</td>
-        <td>${brl(u.ValorEntregue)}</td>
-        <td>${pct(u.ValorEntregue,u.ValorFaturado)}</td>
-        <td>${brl(u.Pendente)}</td>
-        <td>${brl(u.PrevDez)}</td>
-        <td>${brl(u.PrevJan)}</td>
-      </tr>
-    `).join('');
-}
-load();
-</script>
-</body>
-</html>
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+          <div style="min-width:62px;font-weight:700">${a.ano}</div>
+          <div style="flex:1">
+            <div class="bar"><span style="width:$

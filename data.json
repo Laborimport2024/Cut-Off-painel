@@ -9,22 +9,27 @@
   },
 
   "historico_dezembro": [
-    {
-      "ano": 2022,
-      "entregue": 10469569.79,
-      "nao_entregue": 5096668.33
-    },
-    {
-      "ano": 2023,
-      "entregue": 10181904.23,
-      "nao_entregue": 3484653.45
-    },
-    {
-      "ano": 2024,
-      "entregue": 8442427.58,
-      "nao_entregue": 2206276.57
-    }
-  ],
+  {
+    "ano": 2022,
+    "entregue": 10469569.79,
+    "nao_entregue": 5096668.33
+  },
+  {
+    "ano": 2023,
+    "entregue": 10181904.23,
+    "nao_entregue": 3484653.45
+  },
+  {
+    "ano": 2024,
+    "entregue": 8442427.58,
+    "nao_entregue": 2206276.57
+  },
+  {
+    "ano": 2025,
+    "entregue": 4389005.29,
+    "nao_entregue": 3377658.98
+  }
+],
 
   "regioes": [
     {

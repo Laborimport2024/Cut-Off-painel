@@ -8,52 +8,22 @@
     "entrega_prevista_jan": 2206276.57
   },
 
-  "historico": [
+  "historico_dezembro": [
     { "ano": 2022, "entregue": 10469569.79, "nao_entregue": 5096668.33 },
     { "ano": 2023, "entregue": 10181904.23, "nao_entregue": 3484653.45 },
     { "ano": 2024, "entregue": 8442427.58, "nao_entregue": 2206276.57 }
   ],
 
   "regioes": [
-    {
-      "regiao": "Sudeste",
-      "faturado": 4200000,
-      "entregue": 3150000,
-      "pendente": 1050000,
-      "prev_dez": 600000,
-      "prev_jan": 450000
-    },
-    {
-      "regiao": "Nordeste",
-      "faturado": 1500000,
-      "entregue": 900000,
-      "pendente": 600000,
-      "prev_dez": 200000,
-      "prev_jan": 400000
-    },
-    {
-      "regiao": "Sul",
-      "faturado": 1800000,
-      "entregue": 1500000,
-      "pendente": 300000,
-      "prev_dez": 150000,
-      "prev_jan": 150000
-    },
-    {
-      "regiao": "Centro-Oeste",
-      "faturado": 600000,
-      "entregue": 273984.12,
-      "pendente": 326015.88,
-      "prev_dez": 100000,
-      "prev_jan": 226015.88
-    },
-    {
-      "regiao": "Norte",
-      "faturado": 500000,
-      "entregue": 350000,
-      "pendente": 150000,
-      "prev_dez": 50000,
-      "prev_jan": 100000
-    }
+    { "regiao": "Sudeste", "valor_faturado": 0, "valor_entregue": 0, "valor_pendente": 0, "previsto_dez": 0, "previsto_jan": 0 },
+    { "regiao": "Nordeste", "valor_faturado": 0, "valor_entregue": 0, "valor_pendente": 0, "previsto_dez": 0, "previsto_jan": 0 },
+    { "regiao": "Sul", "valor_faturado": 0, "valor_entregue": 0, "valor_pendente": 0, "previsto_dez": 0, "previsto_jan": 0 },
+    { "regiao": "Centro-Oeste", "valor_faturado": 0, "valor_entregue": 0, "valor_pendente": 0, "previsto_dez": 0, "previsto_jan": 0 },
+    { "regiao": "Norte", "valor_faturado": 0, "valor_entregue": 0, "valor_pendente": 0, "previsto_dez": 0, "previsto_jan": 0 }
+  ],
+
+  "uf": [
+    { "UF": "SP", "ValorFaturado": 2629604.33, "ValorEntregue": 1900000.00, "Pendente": 729604.33, "PrevDez": 300000.00, "PrevJan": 429604.33 },
+    { "UF": "RJ", "ValorFaturado": 500000.00, "ValorEntregue": 350000.00, "Pendente": 150000.00, "PrevDez": 70000.00, "PrevJan": 80000.00 }
   ]
 }

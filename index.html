@@ -89,6 +89,24 @@
   }
 
   .mini{font-size:11px;color:var(--muted);line-height:1.35}
+
+  /* 🔗 Link final */
+  .footer-link{
+    margin-top:16px;
+    padding:12px 14px;
+    border:1px dashed var(--line);
+    border-radius:12px;
+    font-size:12px;
+    color:var(--muted)
+  }
+  .footer-link a{
+    color:#93c5fd;
+    text-decoration:none;
+    word-break:break-all
+  }
+  .footer-link a:hover{
+    text-decoration:underline
+  }
 </style>
 </head>
 
@@ -111,7 +129,7 @@
 
   <!-- REGIÕES -->
   <div class="card">
-    <div class="section-title">Entregas por Região</div>
+    <div class="section-title">Janeiro – entregas por região</div>
     <div style="overflow:auto">
       <table id="regioesTable">
         <thead>
@@ -136,7 +154,6 @@
 <div class="card" style="margin-top:12px">
   <div class="section-title">Detalhamento por UF</div>
 
-  <!-- 🔍 PESQUISA POR UF -->
   <div class="toolbar">
     <input id="ufSearch" placeholder="Pesquisar UF (ex: SP)" />
   </div>
@@ -159,6 +176,16 @@
   </div>
 </div>
 
+<!-- 🔗 LINK FINAL -->
+<div class="footer-link">
+  Para mais detalhes acessar o link:
+  <br/>
+  <a href="https://bunzlbr-my.sharepoint.com/:x:/r/personal/fernando_milani_laborhs_com_br/Documents/Cut-off%202025/CUT%20OFF%202025.xlsx?d=w7a08996d21e646f6ad8d3d14996f3dea&csf=1&web=1&e=9L7Gx4"
+     target="_blank" rel="noopener noreferrer">
+    https://bunzlbr-my.sharepoint.com/:x:/r/personal/fernando_milani_laborhs_com_br/Documents/Cut-off%202025/CUT%20OFF%202025.xlsx
+  </a>
+</div>
+
 </div>
 
 <script>
@@ -173,7 +200,6 @@ async function load(){
 
   document.getElementById('updatedAt').textContent=d.updated_at;
 
-  /* KPIs */
   document.getElementById('kpis').innerHTML=[
     ['Valor faturado (Dez)',d.kpis.valor_faturado_dez],
     ['Valor entregue (Dez)',d.kpis.valor_entregue_dez],
@@ -186,7 +212,6 @@ async function load(){
     </div>
   `).join('');
 
-  /* Histórico */
   document.getElementById('yearChart').innerHTML=d.historico_dezembro.map(a=>{
     const total=a.entregue+a.nao_entregue;
     const w= total ? (a.entregue/total)*100 : 0;
@@ -201,7 +226,6 @@ async function load(){
     `;
   }).join('');
 
-  /* Regiões */
   document.querySelector('#regioesTable tbody').innerHTML=
     d.regioes.map(r=>{
       const p=r.valor_faturado ? r.valor_entregue/r.valor_faturado : 0;
@@ -221,8 +245,7 @@ async function load(){
       `;
     }).join('');
 
-  /* UF */
-  ufData = d.uf;
+  ufData=d.uf;
   renderUFTable(ufData);
 }
 
@@ -241,7 +264,6 @@ function renderUFTable(data){
     `).join('');
 }
 
-/* 🔍 FILTRO POR UF */
 document.addEventListener('input',e=>{
   if(e.target.id==='ufSearch'){
     const term=e.target.value.toUpperCase();

@@ -6,31 +6,26 @@
 <title>Cut-Off – Painel Executivo</title>
 
 <style>
- /* 🔹 Cabeçalhos numéricos da tabela de UF */
-#ufTable thead th:nth-child(2),
-#ufTable thead th:nth-child(3),
-#ufTable thead th:nth-child(5),
-#ufTable thead th:nth-child(6),
-#ufTable thead th:nth-child(7){
-  color:var(--table-head-mid);
-  font-weight:600;
-} 
-:root {
-  --bg:#0b1020;
-  --card:#121a33;
-  --muted:#9aa4c0;
-  --text:#e9ecf5;
-  --line:#243055;
-  --good:#22c55e;
+  :root {
+    --bg:#0b1020;
+    --card:#121a33;
+    --muted:#9aa4c0;
+    --text:#e9ecf5;
+    --line:#243055;
+    --good:#22c55e;
 
-  --ink:#0b1b3a;
-  --whiteCard:#ffffff;
-  --regionCard:#0f2a53;
-  --regionLine:rgba(255,255,255,.10);
+    /* Novos tons executivos */
+    --ink:#0b1b3a;         /* azul escuro p/ texto em cards claros */
+    --whiteCard:#ffffff;   /* fundo KPI */
+    --regionCard:#0f2a53;  /* destaque regiões */
+    --regionLine:rgba(255,255,255,.10);
 
-  /* 🔹 NOVA VARIÁVEL */
-  --table-head-mid:#8f9ac2;
-}
+    /* Cabeçalhos (um pouco mais escuros que antes, sem superar os valores) */
+    --table-head-mid:#8f9ac2;
+
+    /* Vermelho executivo que conversa com o azul */
+    --alert-red:#c0362c;
+  }
 
   *{box-sizing:border-box}
   body{
@@ -61,6 +56,12 @@
   }
   .card.kpi .kpi-title{color:rgba(11,27,58,.65)}
   .card.kpi .kpi-value{color:var(--ink)}
+
+  /* 🔴 KPI 4 (Entrega prevista – Jan) em vermelho */
+  #kpis .card.kpi:nth-child(4) .kpi-title,
+  #kpis .card.kpi:nth-child(4) .kpi-value{
+    color:var(--alert-red);
+  }
 
   /* Card destaque por região */
   .card.region{
@@ -96,12 +97,8 @@
     border-bottom:1px solid rgba(36,48,85,.8);
     font-size:12px
   }
-  th{
-  color:var(--table-head-dark);
-  text-align:left;
-  font-weight:600;
-  letter-spacing:.2px;
-}
+  th{color:#cfd6f3;text-align:left}
+
   .bar{
     height:8px;
     background:#0f1730;
@@ -158,6 +155,25 @@
     word-break:break-all
   }
   .footer-link a:hover{ text-decoration:underline }
+
+  /* =========================
+     AJUSTES DE CABEÇALHO (UF)
+     ========================= */
+
+  /* Cabeçalhos numéricos – mais escuros, mas abaixo dos valores */
+  #ufTable thead th:nth-child(2),
+  #ufTable thead th:nth-child(3),
+  #ufTable thead th:nth-child(5),
+  #ufTable thead th:nth-child(6){
+    color:var(--table-head-mid);
+    font-weight:600;
+  }
+
+  /* 🔴 Cabeçalho Previsto Jan em vermelho (somente o título) */
+  #ufTable thead th:nth-child(7){
+    color:var(--alert-red);
+    font-weight:600;
+  }
 </style>
 </head>
 
@@ -174,13 +190,13 @@
 
   <!-- HISTÓRICO -->
   <div class="card">
-    <div class="section-title">Resumo Histórico – (anos anteriores)</div>
+    <div class="section-title">Resumo histórico – (anos anteriores)</div>
     <div id="yearChart"></div>
   </div>
 
   <!-- REGIÕES -->
   <div class="card region">
-    <div class="section-title">Entregas por Região</div>
+    <div class="section-title">Janeiro – entregas por região</div>
     <div style="overflow:auto">
       <table id="regioesTable">
         <thead>
@@ -208,7 +224,7 @@
   <div class="toolbar">
     <input id="ufSearch" placeholder="Pesquisar UF (ex: SP)" />
 
-    <!-- NOVO: ordenação -->
+    <!-- Ordenação -->
     <select id="ufSort">
       <option value="ValorFaturado">Ordenar por: Valor faturado</option>
       <option value="ValorEntregue">Ordenar por: Valor entregue</option>

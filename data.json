@@ -1,18 +1,59 @@
 {
-  "updated_at": "17/12/2025 12:30",
+  "updated_at": "17/12/2025 14:30",
 
   "kpis": {
     "valor_faturado_dez": 8442427.58,
     "valor_entregue_dez": 6173984.12,
-    "valor_previsto_dez": 1023456.78,
-    "valor_previsto_jan": 2267890.45
+    "entrega_prevista_dez": 1200000.00,
+    "entrega_prevista_jan": 2206276.57
   },
 
-  "regioes_janeiro": [
-    { "regiao": "Sudeste", "valor_faturado": 4200000, "valor_entregue": 3150000 },
-    { "regiao": "Sul", "valor_faturado": 1800000, "valor_entregue": 1500000 },
-    { "regiao": "Nordeste", "valor_faturado": 1500000, "valor_entregue": 900000 },
-    { "regiao": "Norte", "valor_faturado": 500000, "valor_entregue": 350000 },
-    { "regiao": "Centro-Oeste", "valor_faturado": 600000, "valor_entregue": 273984.12 }
+  "historico": [
+    { "ano": 2022, "entregue": 10469569.79, "nao_entregue": 5096668.33 },
+    { "ano": 2023, "entregue": 10181904.23, "nao_entregue": 3484653.45 },
+    { "ano": 2024, "entregue": 8442427.58, "nao_entregue": 2206276.57 }
+  ],
+
+  "regioes": [
+    {
+      "regiao": "Sudeste",
+      "faturado": 4200000,
+      "entregue": 3150000,
+      "pendente": 1050000,
+      "prev_dez": 600000,
+      "prev_jan": 450000
+    },
+    {
+      "regiao": "Nordeste",
+      "faturado": 1500000,
+      "entregue": 900000,
+      "pendente": 600000,
+      "prev_dez": 200000,
+      "prev_jan": 400000
+    },
+    {
+      "regiao": "Sul",
+      "faturado": 1800000,
+      "entregue": 1500000,
+      "pendente": 300000,
+      "prev_dez": 150000,
+      "prev_jan": 150000
+    },
+    {
+      "regiao": "Centro-Oeste",
+      "faturado": 600000,
+      "entregue": 273984.12,
+      "pendente": 326015.88,
+      "prev_dez": 100000,
+      "prev_jan": 226015.88
+    },
+    {
+      "regiao": "Norte",
+      "faturado": 500000,
+      "entregue": 350000,
+      "pendente": 150000,
+      "prev_dez": 50000,
+      "prev_jan": 100000
+    }
   ]
 }

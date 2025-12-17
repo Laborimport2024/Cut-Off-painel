@@ -38,7 +38,6 @@
   .kpi-title{color:var(--muted);font-size:12px}
   .kpi-value{font-size:22px;margin-top:8px;font-weight:700}
 
-  /* Mais espaço para "Região" */
   .row{
     display:grid;
     grid-template-columns:1fr 1.4fr;
@@ -52,6 +51,7 @@
   }
 
   .section-title{margin:0 0 8px 0;font-size:14px;color:#d8ddf0}
+
   table{width:100%;border-collapse:collapse}
   th,td{
     padding:8px;
@@ -71,6 +71,23 @@
     height:100%;
     background:linear-gradient(90deg,#60a5fa,var(--good))
   }
+
+  .toolbar{
+    display:flex;
+    gap:10px;
+    margin-bottom:8px
+  }
+
+  .toolbar input{
+    background:#0f1730;
+    border:1px solid var(--line);
+    color:var(--text);
+    padding:8px 10px;
+    border-radius:8px;
+    font-size:12px;
+    width:200px
+  }
+
   .mini{font-size:11px;color:var(--muted);line-height:1.35}
 </style>
 </head>
@@ -95,7 +112,6 @@
   <!-- REGIÕES -->
   <div class="card">
     <div class="section-title">Janeiro – entregas por região</div>
-
     <div style="overflow:auto">
       <table id="regioesTable">
         <thead>
@@ -112,14 +128,19 @@
         <tbody></tbody>
       </table>
     </div>
-
   </div>
 
 </div>
 
-<!-- TABELA UF -->
+<!-- DETALHAMENTO POR UF -->
 <div class="card" style="margin-top:12px">
   <div class="section-title">Detalhamento por UF</div>
+
+  <!-- 🔍 PESQUISA POR UF -->
+  <div class="toolbar">
+    <input id="ufSearch" placeholder="Pesquisar UF (ex: SP)" />
+  </div>
+
   <div style="overflow:auto;max-height:520px">
     <table id="ufTable">
       <thead>
@@ -144,6 +165,8 @@
 const brl=v=>Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const pct=(a,b)=>b?((a/b)*100).toFixed(2).replace('.',',')+'%':'0,00%';
 
+let ufData=[];
+
 async function load(){
   const r=await fetch('./data.json?v='+Date.now(),{cache:'no-store'});
   const d=await r.json();
@@ -163,16 +186,9 @@ async function load(){
     </div>
   `).join('');
 
-  /* Histórico (com resumo por ano restaurado) */
+  /* Histórico */
   document.getElementById('yearChart').innerHTML=d.historico_dezembro.map(a=>{
-    const entregue=Number(a.entregue||0);
-    const nao=Number(a.nao_entregue||0);
-    const total=entregue+nao;
-    const w= total ? (entregue/total)*100 : 0;
-
+    const total=a.entregue+a.nao_entregue;
+    const w= total ? (a.entregue/total)*100 : 0;
     return `
-      <div style="margin-bottom:10px">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
-          <div style="min-width:62px;font-weight:700">${a.ano}</div>
-          <div style="flex:1">
-            <div class="bar"><span style="width:$
+      <div style="margin-bottom

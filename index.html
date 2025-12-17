@@ -4,97 +4,172 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Cut-Off – Painel Executivo</title>
+
 <style>
-:root{
-  --bg:#0b1020;--card:#121a33;--muted:#9aa4c0;--text:#e9ecf5;--line:#243055;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),#070a14);color:var(--text)}
-.wrap{max-width:1200px;margin:0 auto;padding:24px}
-.top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
-h1{margin:0;font-size:22px}
-.sub{color:var(--muted);font-size:12px;margin-top:6px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
-.card{background:rgba(18,26,51,.92);border:1px solid rgba(36,48,85,.8);border-radius:14px;padding:14px}
-.kpi-title{color:var(--muted);font-size:12px}
-.kpi-value{font-size:22px;margin-top:8px;font-weight:700}
-.kpi-foot{margin-top:6px;color:var(--muted);font-size:12px}
-.row{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin-top:12px}
-@media (max-width: 980px){ .grid{grid-template-columns:repeat(2,1fr)} .row{grid-template-columns:1fr} }
-.section-title{margin:0 0 8px 0;font-size:14px}
-.note{color:var(--muted);font-size:12px}
-.pill{display:inline-block;padding:4px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:11px}
-.mini{font-size:11px;color:var(--muted)}
+  :root {
+    --bg:#0b1020;
+    --card:#121a33;
+    --muted:#9aa4c0;
+    --text:#e9ecf5;
+    --line:#243055;
+    --good:#22c55e;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Segoe UI,Roboto,Arial,sans-serif;
+    background:linear-gradient(180deg,var(--bg),#070a14);
+    color:var(--text)
+  }
+  .wrap{max-width:1200px;margin:0 auto;padding:24px}
+  h1{margin:0;font-size:22px}
+  .sub{color:var(--muted);font-size:12px;margin-top:6px}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+  .card{
+    background:rgba(18,26,51,.92);
+    border:1px solid rgba(36,48,85,.8);
+    border-radius:14px;
+    padding:14px;
+    box-shadow:0 10px 24px rgba(0,0,0,.25)
+  }
+  .kpi-title{color:var(--muted);font-size:12px}
+  .kpi-value{font-size:22px;margin-top:8px;font-weight:700}
+  .row{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin-top:12px}
+  @media (max-width:980px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .row{grid-template-columns:1fr}
+  }
+  .section-title{margin:0 0 10px 0;font-size:14px;color:#d8ddf0}
+  .note{font-size:12px;color:var(--muted)}
+  table{width:100%;border-collapse:collapse}
+  th,td{
+    padding:8px;
+    border-bottom:1px solid rgba(36,48,85,.8);
+    font-size:12px
+  }
+  th{color:#cfd6f3;text-align:left}
+  .bar{
+    height:8px;
+    background:#0f1730;
+    border-radius:999px;
+    overflow:hidden
+  }
+  .bar span{
+    display:block;
+    height:100%;
+    background:linear-gradient(90deg,#60a5fa,var(--good))
+  }
+  .mini{font-size:11px;color:var(--muted)}
 </style>
 </head>
+
 <body>
 <div class="wrap">
 
-<div class="top">
-  <div>
-    <h1>Cut-Off – Painel Executivo</h1>
-    <div class="sub">Última atualização: <span id="updatedAt">—</span></div>
-  </div>
-</div>
+<h1>Cut-Off – Painel Executivo</h1>
+<div class="sub">Última atualização: <span id="updatedAt">—</span></div>
 
-<div class="grid" id="kpiGrid"></div>
+<!-- KPIs -->
+<div class="grid" id="kpis"></div>
 
 <div class="row">
+
+  <!-- Histórico -->
   <div class="card">
-    <div class="section-title">Resumo histórico – Dezembro</div>
-    <div id="yearChart" class="mini">—</div>
+    <div class="section-title">Resumo histórico – Dezembro (anos anteriores)</div>
+    <div id="yearChart"></div>
+    <div class="mini" style="margin-top:8px">Entregue x Não entregue (R$)</div>
   </div>
 
+  <!-- Região -->
   <div class="card">
-    <div class="section-title">Janeiro – entregas por região</div>
-    <div id="regioesJan" style="margin-top:10px"></div>
-    <div class="mini" style="margin-top:8px">% Entregue = Entregue ÷ Faturado</div>
+    <div class="section-title">Janeiro – Entregas por Região</div>
+    <div class="note">
+      Valores faturados, entregues, pendentes e previsões.
+      % Entregue = Entregue ÷ Faturado.
+    </div>
+    <div style="margin-top:10px;overflow:auto">
+      <table id="regioesTable">
+        <thead>
+          <tr>
+            <th>Região</th>
+            <th>Faturado</th>
+            <th>Entregue</th>
+            <th>%</th>
+            <th>Pendente</th>
+            <th>Prev. Dez</th>
+            <th>Prev. Jan</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
+
 </div>
 
 <script>
-function brl(v){
-  return Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
-}
-function pct(a,b){
-  if(!b) return '0,00%';
-  return ((a/b)*100).toFixed(2).replace('.',',')+'%';
-}
+const brl = v => Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const pct = (a,b)=> b?((a/b)*100).toFixed(2).replace('.',',')+'%':'0,00%';
 
 async function load(){
   const r = await fetch('./data.json?v='+Date.now(),{cache:'no-store'});
-  const data = await r.json();
+  const d = await r.json();
 
-  document.getElementById('updatedAt').textContent = data.updated_at;
+  document.getElementById('updatedAt').textContent = d.updated_at;
 
-  const k = data.kpis;
-  const cards = [
-    {t:'Valor faturado (Dez)', v: brl(k.valor_faturado_dez)},
-    {t:'Valor entregue (Dez)', v: brl(k.valor_entregue_dez)},
-    {t:'Entrega prevista – Dez', v: brl(k.valor_previsto_dez)},
-    {t:'Entrega prevista – Jan', v: brl(k.valor_previsto_jan)}
-  ];
-
-  document.getElementById('kpiGrid').innerHTML = cards.map(c=>`
+  /* KPIs */
+  document.getElementById('kpis').innerHTML = [
+    ['Valor faturado – Dez', d.kpis.valor_faturado_dez],
+    ['Valor entregue – Dez', d.kpis.valor_entregue_dez],
+    ['Entrega prevista – Dez', d.kpis.entrega_prevista_dez],
+    ['Entrega prevista – Jan', d.kpis.entrega_prevista_jan]
+  ].map(k=>`
     <div class="card">
-      <div class="kpi-title">${c.t}</div>
-      <div class="kpi-value">${c.v}</div>
+      <div class="kpi-title">${k[0]}</div>
+      <div class="kpi-value">${brl(k[1])}</div>
     </div>
   `).join('');
 
-  document.getElementById('regioesJan').innerHTML =
-    data.regioes_janeiro.map(r=>`
-      <div style="margin-bottom:8px">
-        <span class="pill">${r.regiao}</span>
-        <div class="mini">Faturado: <b>${brl(r.valor_faturado)}</b></div>
-        <div class="mini">Entregue: <b>${brl(r.valor_entregue)}</b></div>
-        <div><b>${pct(r.valor_entregue,r.valor_faturado)}</b></div>
-      </div>
-    `).join('');
-}
+  /* Histórico */
+  document.getElementById('yearChart').innerHTML =
+    d.historico.map(a=>{
+      const total=a.entregue+a.nao_entregue;
+      const w=(a.entregue/total)*100;
+      return `
+        <div style="margin-bottom:10px">
+          <b>${a.ano}</b>
+          <div class="bar"><span style="width:${w}%"></span></div>
+          <div class="mini">
+            Entregue ${brl(a.entregue)} • Não entregue ${brl(a.nao_entregue)}
+          </div>
+        </div>
+      `;
+    }).join('');
 
+  /* Região */
+  const tbody=document.querySelector('#regioesTable tbody');
+  tbody.innerHTML=d.regioes.map(r=>{
+    const perc=(r.entregue/r.faturado)*100||0;
+    return `
+      <tr>
+        <td><b>${r.regiao}</b></td>
+        <td>${brl(r.faturado)}</td>
+        <td>${brl(r.entregue)}</td>
+        <td>
+          ${pct(r.entregue,r.faturado)}
+          <div class="bar"><span style="width:${perc}%"></span></div>
+        </td>
+        <td>${brl(r.pendente)}</td>
+        <td>${brl(r.prev_dez)}</td>
+        <td>${brl(r.prev_jan)}</td>
+      </tr>
+    `;
+  }).join('');
+}
 load();
 </script>
 
+</div>
 </body>
 </html>

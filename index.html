@@ -6,20 +6,31 @@
 <title>Cut-Off – Painel Executivo</title>
 
 <style>
-  :root {
-    --bg:#0b1020;
-    --card:#121a33;
-    --muted:#9aa4c0;
-    --text:#e9ecf5;
-    --line:#243055;
-    --good:#22c55e;
+ /* 🔹 Cabeçalhos numéricos da tabela de UF */
+#ufTable thead th:nth-child(2),
+#ufTable thead th:nth-child(3),
+#ufTable thead th:nth-child(5),
+#ufTable thead th:nth-child(6),
+#ufTable thead th:nth-child(7){
+  color:var(--table-head-mid);
+  font-weight:600;
+} 
+:root {
+  --bg:#0b1020;
+  --card:#121a33;
+  --muted:#9aa4c0;
+  --text:#e9ecf5;
+  --line:#243055;
+  --good:#22c55e;
 
-    /* Novos tons executivos */
-    --ink:#0b1b3a;         /* azul escuro p/ texto em cards claros */
-    --whiteCard:#ffffff;   /* fundo KPI */
-    --regionCard:#0f2a53;  /* destaque regiões */
-    --regionLine:rgba(255,255,255,.10);
-  }
+  --ink:#0b1b3a;
+  --whiteCard:#ffffff;
+  --regionCard:#0f2a53;
+  --regionLine:rgba(255,255,255,.10);
+
+  /* 🔹 NOVA VARIÁVEL */
+  --table-head-mid:#8f9ac2;
+}
 
   *{box-sizing:border-box}
   body{

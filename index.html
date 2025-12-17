@@ -169,10 +169,12 @@
     font-weight:600;
   }
 
-  /* 🔴 Cabeçalho Previsto Jan em vermelho (somente o título) */
-  #ufTable thead th:nth-child(7){
-    color:var(--alert-red);
-    font-weight:600;
+  /* 🔴 Coluna Previsto Jan (UF): título + valores em vermelho */
+#ufTable thead th:nth-child(7),
+#ufTable tbody td:nth-child(7){
+  color:var(--alert-red);
+  font-weight:600;
+}
   }
 </style>
 </head>

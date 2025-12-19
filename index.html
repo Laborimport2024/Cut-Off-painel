@@ -35,8 +35,29 @@
     color:var(--text)
   }
   .wrap{max-width:1200px;margin:0 auto;padding:24px}
+
   h1{margin:0;font-size:22px}
   .sub{color:var(--muted);font-size:12px;margin-top:6px}
+
+  /* =========================
+     HEADER (TÍTULO + OBJETIVO)
+     ========================= */
+  .header{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .objective{
+    font-size:12px;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  .objective b{
+    color:#d8ddf0;
+    font-weight:700;
+  }
 
   .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
 
@@ -170,11 +191,10 @@
   }
 
   /* 🔴 Coluna Previsto Jan (UF): título + valores em vermelho */
-#ufTable thead th:nth-child(7),
-#ufTable tbody td:nth-child(7){
-  color:var(--alert-red);
-  font-weight:600;
-}
+  #ufTable thead th:nth-child(7),
+  #ufTable tbody td:nth-child(7){
+    color:var(--alert-red);
+    font-weight:600;
   }
 </style>
 </head>
@@ -182,34 +202,79 @@
 <body>
 <div class="wrap">
 
-<h1>Cut-Off – Painel Executivo</h1>
-<div class="sub">Última atualização: <span id="updatedAt">—</span></div>
-
-<!-- KPIs -->
-<div class="grid" id="kpis"></div>
-
-<div class="row">
-
-  <!-- HISTÓRICO -->
-  <div class="card">
-    <div class="section-title">Resumo histórico – (anos anteriores)</div>
-    <div id="yearChart"></div>
+  <div class="header">
+    <h1>Cut-Off – Painel Executivo</h1>
+    <div class="objective">Objetivo: <b>R$ 8.960.000,00</b></div>
   </div>
 
-  <!-- REGIÕES -->
-  <div class="card region">
-    <div class="section-title">Entregas por Região</div>
-    <div style="overflow:auto">
-      <table id="regioesTable">
+  <div class="sub">Última atualização: <span id="updatedAt">—</span></div>
+
+  <!-- KPIs -->
+  <div class="grid" id="kpis"></div>
+
+  <div class="row">
+
+    <!-- HISTÓRICO -->
+    <div class="card">
+      <div class="section-title">Resumo histórico – (anos anteriores)</div>
+      <div id="yearChart"></div>
+    </div>
+
+    <!-- REGIÕES -->
+    <div class="card region">
+      <div class="section-title">Entregas por Região</div>
+      <div style="overflow:auto">
+        <table id="regioesTable">
+          <thead>
+            <tr>
+              <th>Região</th>
+              <th>Faturado</th>
+              <th>Entregue</th>
+              <th>%</th>
+              <th>Pendente</th>
+              <th>Prev. Dez</th>
+              <th>Prev. Jan</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DETALHAMENTO POR UF -->
+  <div class="card" style="margin-top:12px">
+    <div class="section-title">Detalhamento por UF</div>
+
+    <div class="toolbar">
+      <input id="ufSearch" placeholder="Pesquisar UF (ex: SP)" />
+
+      <!-- Ordenação -->
+      <select id="ufSort">
+        <option value="ValorFaturado">Ordenar por: Valor faturado</option>
+        <option value="ValorEntregue">Ordenar por: Valor entregue</option>
+        <option value="Pendente">Ordenar por: Pendente</option>
+        <option value="PrevDez">Ordenar por: Previsto Dez</option>
+        <option value="PrevJan">Ordenar por: Previsto Jan</option>
+      </select>
+
+      <button id="ufDir" type="button" aria-label="Alternar direção">
+        Descendente
+      </button>
+    </div>
+
+    <div style="overflow:auto;max-height:520px">
+      <table id="ufTable">
         <thead>
           <tr>
-            <th>Região</th>
-            <th>Faturado</th>
-            <th>Entregue</th>
-            <th>%</th>
+            <th>UF</th>
+            <th>Valor faturado</th>
+            <th>Valor entregue</th>
+            <th>% entregue</th>
             <th>Pendente</th>
-            <th>Prev. Dez</th>
-            <th>Prev. Jan</th>
+            <th>Previsto Dez</th>
+            <th>Previsto Jan</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -217,56 +282,15 @@
     </div>
   </div>
 
-</div>
-
-<!-- DETALHAMENTO POR UF -->
-<div class="card" style="margin-top:12px">
-  <div class="section-title">Detalhamento por UF</div>
-
-  <div class="toolbar">
-    <input id="ufSearch" placeholder="Pesquisar UF (ex: SP)" />
-
-    <!-- Ordenação -->
-    <select id="ufSort">
-      <option value="ValorFaturado">Ordenar por: Valor faturado</option>
-      <option value="ValorEntregue">Ordenar por: Valor entregue</option>
-      <option value="Pendente">Ordenar por: Pendente</option>
-      <option value="PrevDez">Ordenar por: Previsto Dez</option>
-      <option value="PrevJan">Ordenar por: Previsto Jan</option>
-    </select>
-
-    <button id="ufDir" type="button" aria-label="Alternar direção">
-      Descendente
-    </button>
+  <!-- 🔗 LINK FINAL -->
+  <div class="footer-link">
+    Para mais detalhes acessar o link:
+    <br/>
+    <a href="https://bunzlbr-my.sharepoint.com/:x:/r/personal/fernando_milani_laborhs_com_br/Documents/Cut-off%202025/CUT%20OFF%202025.xlsx?d=w7a08996d21e646f6ad8d3d14996f3dea&csf=1&web=1&e=9L7Gx4"
+       target="_blank" rel="noopener noreferrer">
+      https://bunzlbr-my.sharepoint.com/:x:/r/personal/fernando_milani_laborhs_com_br/Documents/Cut-off%202025/CUT%20OFF%202025.xlsx
+    </a>
   </div>
-
-  <div style="overflow:auto;max-height:520px">
-    <table id="ufTable">
-      <thead>
-        <tr>
-          <th>UF</th>
-          <th>Valor faturado</th>
-          <th>Valor entregue</th>
-          <th>% entregue</th>
-          <th>Pendente</th>
-          <th>Previsto Dez</th>
-          <th>Previsto Jan</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
-</div>
-
-<!-- 🔗 LINK FINAL -->
-<div class="footer-link">
-  Para mais detalhes acessar o link:
-  <br/>
-  <a href="https://bunzlbr-my.sharepoint.com/:x:/r/personal/fernando_milani_laborhs_com_br/Documents/Cut-off%202025/CUT%20OFF%202025.xlsx?d=w7a08996d21e646f6ad8d3d14996f3dea&csf=1&web=1&e=9L7Gx4"
-     target="_blank" rel="noopener noreferrer">
-    https://bunzlbr-my.sharepoint.com/:x:/r/personal/fernando_milani_laborhs_com_br/Documents/Cut-off%202025/CUT%20OFF%202025.xlsx
-  </a>
-</div>
 
 </div>
 

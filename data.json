@@ -1,10 +1,10 @@
 {
-  "updated_at": "22/12/2025 17:24",
+  "updated_at": "23/12/2025 08:57",
   "kpis": {
-    "valor_faturado_dez": 10014933.45,
-    "valor_entregue_dez": 6658149.61,
-    "entrega_prevista_dez": 1877357.39,
-    "entrega_prevista_jan": 1410522.65
+    "valor_faturado_dez": 10111348.71,
+    "valor_entregue_dez": 6768625.23,
+    "entrega_prevista_dez": 1770867.50,
+    "entrega_prevista_jan": 1406536.92
   },
   "historico_dezembro": [
     {
@@ -24,78 +24,78 @@
     },
     {
       "ano": 2025,
-      "entregue": 6658149.61,
-      "nao_entregue": 3356783.84
+      "entregue": 6768625.23,
+      "nao_entregue": 3349699.57
     }
   ],
   "regioes": [
     {
       "regiao": "Sudeste",
-      "valor_faturado": 4402045.43,
-      "valor_entregue": 3577845.07,
-      "valor_pendente": 831176.45,
-      "previsto_dez": 738569.27,
+      "valor_faturado": 4419515.26,
+      "valor_entregue": 3597316.34,
+      "valor_pendente": 829175.01,
+      "previsto_dez": 719098.00,
       "previsto_jan": 82754.58
     },
     {
       "regiao": "Nordeste",
-      "valor_faturado": 2564880.73,
-      "valor_entregue": 1234975.02,
-      "valor_pendente": 1329905.71,
-      "previsto_dez": 528370.32,
+      "valor_faturado": 2635874.09,
+      "valor_entregue": 1266225.21,
+      "valor_pendente": 1369648.88,
+      "previsto_dez": 497120.13,
       "previsto_jan": 790404.05
     },
     {
       "regiao": "Sul",
-      "valor_faturado": 944711.13,
-      "valor_entregue": 855964.15,
-      "valor_pendente": 88746.98,
-      "previsto_dez": 83287.92,
+      "valor_faturado": 950794.85,
+      "valor_entregue": 869976.62,
+      "valor_pendente": 80818.23,
+      "previsto_dez": 69275.45,
       "previsto_jan": 4065.06
     },
     {
       "regiao": "Centro-Oeste",
-      "valor_faturado": 1047390.57,
-      "valor_entregue": 470902.50,
-      "valor_pendente": 576488.07,
-      "previsto_dez": 389524.01,
-      "previsto_jan": 159014.79
+      "valor_faturado": 1049258.92,
+      "valor_entregue": 502082.37,
+      "valor_pendente": 547176.55,
+      "previsto_dez": 360001.51,
+      "previsto_jan": 157357.42
     },
     {
       "regiao": "Norte",
       "valor_faturado": 1055905.59,
-      "valor_entregue": 518462.87,
-      "valor_pendente": 537442.72,
-      "previsto_dez": 137605.87,
-      "previsto_jan": 374284.17
+      "valor_entregue": 533024.69,
+      "valor_pendente": 522880.90,
+      "previsto_dez": 125372.41,
+      "previsto_jan": 371955.81
     }
   ],
   "uf": [
-    { "UF": "SP", "ValorFaturado": 3195343.19, "ValorEntregue": 2793817.31, "Pendente": 401525.88, "PrevDez": 381864.06, "PrevJan": 19661.82 },
-    { "UF": "MG", "ValorFaturado": 613681.98, "ValorEntregue": 362561.11, "Pendente": 251120.87, "PrevDez": 216005.50, "PrevJan": 35115.37 },
-    { "UF": "PR", "ValorFaturado": 605036.50, "ValorEntregue": 551644.66, "Pendente": 51997.84, "PrevDez": 47932.78, "PrevJan": 4065.06 },
-    { "UF": "RJ", "ValorFaturado": 483916.46, "ValorEntregue": 338755.39, "Pendente": 142284.56, "PrevDez": 114307.17, "PrevJan": 27977.39 },
-    { "UF": "GO", "ValorFaturado": 852080.23, "ValorEntregue": 387268.59, "Pendente": 436862.37, "PrevDez": 295145.99, "PrevJan": 141716.38 },
-    { "UF": "BA", "ValorFaturado": 881982.28, "ValorEntregue": 519237.27, "Pendente": 358791.34, "PrevDez": 161578.82, "PrevJan": 197212.52 },
+    { "UF": "SP", "ValorFaturado": 3196715.99, "ValorEntregue": 2805045.81, "Pendente": 390297.38, "PrevDez": 370635.56, "PrevJan": 19661.82 },
+    { "UF": "MG", "ValorFaturado": 629779.01, "ValorEntregue": 365546.07, "Pendente": 248135.91, "PrevDez": 213020.54, "PrevJan": 35115.37 },
+    { "UF": "PR", "ValorFaturado": 606470.41, "ValorEntregue": 551644.66, "Pendente": 51997.84, "PrevDez": 47932.78, "PrevJan": 4065.06 },
+    { "UF": "RJ", "ValorFaturado": 483916.46, "ValorEntregue": 344013.20, "Pendente": 137026.75, "PrevDez": 109049.36, "PrevJan": 27977.39 },
+    { "UF": "GO", "ValorFaturado": 852080.23, "ValorEntregue": 406385.44, "Pendente": 417745.52, "PrevDez": 276029.14, "PrevJan": 141716.38 },
+    { "UF": "BA", "ValorFaturado": 881982.28, "ValorEntregue": 520865.89, "Pendente": 357162.72, "PrevDez": 159950.20, "PrevJan": 197212.52 },
     { "UF": "RN", "ValorFaturado": 337142.35, "ValorEntregue": 136736.77, "Pendente": 200405.58, "PrevDez": 85712.62, "PrevJan": 114692.96 },
-    { "UF": "SC", "ValorFaturado": 199870.21, "ValorEntregue": 184013.99, "Pendente": 15856.22, "PrevDez": 15856.22, "PrevJan": 0 },
-    { "UF": "RS", "ValorFaturado": 139804.42, "ValorEntregue": 120305.50, "Pendente": 19498.92, "PrevDez": 19498.92, "PrevJan": 0 },
-    { "UF": "MA", "ValorFaturado": 295516.19, "ValorEntregue": 89986.86, "Pendente": 205529.33, "PrevDez": 64288.11, "PrevJan": 141241.22 },
+    { "UF": "SC", "ValorFaturado": 199870.21, "ValorEntregue": 184780.51, "Pendente": 15089.70, "PrevDez": 15089.70, "PrevJan": 0 },
+    { "UF": "RS", "ValorFaturado": 144454.23, "ValorEntregue": 133551.45, "Pendente": 6252.97, "PrevDez": 6252.97, "PrevJan": 0 },
+    { "UF": "MA", "ValorFaturado": 295516.19, "ValorEntregue": 107701.12, "Pendente": 187815.07, "PrevDez": 46573.85, "PrevJan": 141241.22 },
     { "UF": "ES", "ValorFaturado": 109103.80, "ValorEntregue": 82711.26, "Pendente": 26392.54, "PrevDez": 26392.54, "PrevJan": 0 },
-    { "UF": "MT", "ValorFaturado": 84089.08, "ValorEntregue": 7396.03, "Pendente": 76693.05, "PrevDez": 71367.31, "PrevJan": 5325.74 },
-    { "UF": "PA", "ValorFaturado": 410682.06, "ValorEntregue": 201308.11, "Pendente": 209373.95, "PrevDez": 53830.75, "PrevJan": 155543.20 },
-    { "UF": "DF", "ValorFaturado": 81537.87, "ValorEntregue": 59096.29, "Pendente": 22441.58, "PrevDez": 22441.58, "PrevJan": 0 },
-    { "UF": "PE", "ValorFaturado": 190806.42, "ValorEntregue": 82384.42, "Pendente": 104777.36, "PrevDez": 72296.89, "PrevJan": 32480.47 },
-    { "UF": "CE", "ValorFaturado": 309868.60, "ValorEntregue": 109902.24, "Pendente": 197641.36, "PrevDez": 55308.07, "PrevJan": 142333.29 },
+    { "UF": "MT", "ValorFaturado": 85957.43, "ValorEntregue": 7396.03, "Pendente": 76693.05, "PrevDez": 71367.31, "PrevJan": 5325.74 },
+    { "UF": "PA", "ValorFaturado": 410682.06, "ValorEntregue": 209135.01, "Pendente": 201547.05, "PrevDez": 46003.85, "PrevJan": 155543.20 },
+    { "UF": "DF", "ValorFaturado": 81537.87, "ValorEntregue": 69501.94, "Pendente": 12035.93, "PrevDez": 12035.93, "PrevJan": 0 },
+    { "UF": "PE", "ValorFaturado": 190806.42, "ValorEntregue": 90815.99, "Pendente": 96345.79, "PrevDez": 63865.32, "PrevJan": 32480.47 },
+    { "UF": "CE", "ValorFaturado": 360849.31, "ValorEntregue": 109902.24, "Pendente": 197641.36, "PrevDez": 55308.07, "PrevJan": 142333.29 },
     { "UF": "AP", "ValorFaturado": 77641.73, "ValorEntregue": 31847.27, "Pendente": 45794.46, "PrevDez": 4451.85, "PrevJan": 41342.61 },
-    { "UF": "PI", "ValorFaturado": 235518.75, "ValorEntregue": 152683.84, "Pendente": 81626.88, "PrevDez": 27919.80, "PrevJan": 53707.08 },
+    { "UF": "PI", "ValorFaturado": 235518.75, "ValorEntregue": 156159.58, "Pendente": 78151.14, "PrevDez": 24444.06, "PrevJan": 53707.08 },
     { "UF": "AL", "ValorFaturado": 13231.81, "ValorEntregue": 1718.17, "Pendente": 11513.64, "PrevDez": 6677.77, "PrevJan": 4835.87 },
     { "UF": "SE", "ValorFaturado": 104672.44, "ValorEntregue": 2460.57, "Pendente": 102211.87, "PrevDez": 39885.24, "PrevJan": 62326.63 },
-    { "UF": "PB", "ValorFaturado": 196141.89, "ValorEntregue": 139864.88, "Pendente": 56277.01, "PrevDez": 14703.00, "PrevJan": 41574.01 },
+    { "UF": "PB", "ValorFaturado": 216154.54, "ValorEntregue": 139864.88, "Pendente": 56277.01, "PrevDez": 14703.00, "PrevJan": 41574.01 },
     { "UF": "AM", "ValorFaturado": 380951.66, "ValorEntregue": 220163.24, "Pendente": 142114.82, "PrevDez": 30868.16, "PrevJan": 111246.66 },
-    { "UF": "TO", "ValorFaturado": 66809.61, "ValorEntregue": 56364.45, "Pendente": 10445.16, "PrevDez": 2223.93, "PrevJan": 8221.23 },
-    { "UF": "MS", "ValorFaturado": 29683.39, "ValorEntregue": 17141.59, "Pendente": 12541.80, "PrevDez": 569.13, "PrevJan": 11972.67 },
-    { "UF": "RO", "ValorFaturado": 88906.92, "ValorEntregue": 5470.85, "Pendente": 76556.99, "PrevDez": 45062.84, "PrevJan": 31494.15 },
+    { "UF": "TO", "ValorFaturado": 66809.61, "ValorEntregue": 58588.38, "Pendente": 8221.23, "PrevDez": 0, "PrevJan": 8221.23 },
+    { "UF": "MS", "ValorFaturado": 29683.39, "ValorEntregue": 18798.96, "Pendente": 10884.43, "PrevDez": 569.13, "PrevJan": 10315.30 },
+    { "UF": "RO", "ValorFaturado": 88906.92, "ValorEntregue": 9981.84, "Pendente": 72046.00, "PrevDez": 42880.21, "PrevJan": 29165.79 },
     { "UF": "RR", "ValorFaturado": 7018.64, "ValorEntregue": 0, "Pendente": 7018.64, "PrevDez": 0, "PrevJan": 7018.64 },
     { "UF": "AC", "ValorFaturado": 23894.97, "ValorEntregue": 3308.95, "Pendente": 20586.02, "PrevDez": 1168.34, "PrevJan": 19417.68 }
   ]

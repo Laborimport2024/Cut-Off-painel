@@ -1,10 +1,10 @@
 {
-  "updated_at": "26/12/2025 08:48",
+  "updated_at": "26/12/2025 16:37",
   "kpis": {
-    "valor_faturado_dez": 10432662.85,
-    "valor_entregue_dez": 7218530.87,
-    "entrega_prevista_dez": 1404685.67,
-    "entrega_prevista_jan": 1623226.2
+    "valor_faturado_dez": 10491406.27,
+    "valor_entregue_dez": 7386325.22,
+    "entrega_prevista_dez": 1146749.58,
+    "entrega_prevista_jan": 1914605.25
   },
   "historico_dezembro": [
     {
@@ -24,8 +24,8 @@
     },
     {
       "ano": 2025,
-      "entregue": 7218530.87,
-      "nao_entregue": 3221108.07
+      "entregue": 7386325.22,
+      "nao_entregue": 3112057.14
     }
   ],
   "regioes": [

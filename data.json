@@ -3,8 +3,8 @@
   "kpis": {
     "valor_faturado_dez": 10943369.06,
     "valor_entregue_dez": 9067950.34,
-    "entrega_prevista_dez": 181189.58,
-    "entrega_prevista_jan": 1431320.96
+    "nao_expedido": 262908.18,
+    "nao_entregue": 16122510.54
   },
   "historico_dezembro": [
     {

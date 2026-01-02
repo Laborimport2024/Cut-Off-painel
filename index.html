@@ -324,16 +324,16 @@ async function load(){
   document.getElementById('updatedAt').textContent=d.updated_at;
 
   document.getElementById('kpis').innerHTML=[
-    ['Valor faturado (Dez)',d.kpis.valor_faturado_dez],
-    ['Valor entregue (Dez)',d.kpis.valor_entregue_dez],
-    ['Entrega prevista – Dez',d.kpis.entrega_prevista_dez],
-    ['Entrega prevista – Jan',d.kpis.entrega_prevista_jan]
-  ].map(k=>`
-    <div class="card kpi">
-      <div class="kpi-title">${k[0]}</div>
-      <div class="kpi-value">${brl(k[1])}</div>
-    </div>
-  `).join('');
+  ['Valor faturado (Dez)', d.kpis.valor_faturado_dez],
+  ['Valor entregue (Dez)', d.kpis.valor_entregue_dez],
+  ['Não expedido', d.kpis.nao_expedido],
+  ['Não entregue', d.kpis.nao_entregue]
+].map((k,i)=>`
+  <div class="card kpi ${i===3?'alert':''}">
+    <div class="kpi-title">${k[0]}</div>
+    <div class="kpi-value">${brl(k[1])}</div>
+  </div>
+`).join('');
 
   document.getElementById('yearChart').innerHTML=d.historico_dezembro.map(a=>{
     const total=a.entregue+a.nao_entregue;
